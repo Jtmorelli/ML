@@ -40,3 +40,29 @@ predict = lambda x: lr.coef_ * x + lr.intercept_
 print(predict(2025))
 
 print(predict(1890))
+
+
+import seaborn as sns
+
+axes = sns.scatterplot(
+    data=nyc,
+    x="Date",
+    y="Temperature",
+    hue="Temperature",
+    palette="winter",
+    legend=False,
+)
+
+axes.set_ylim(10, 70)
+
+import numpy as np
+
+x = np.array([min(nyc.Date.values), max(nyc.Date.values)])
+print(x)
+y = predict(x)
+print(y)
+
+import matplotlib.pyplot as plt
+
+line = plt.plot(x, y)
+plt.show()
